@@ -37,3 +37,25 @@ resource "azurerm_mssql_database" "ETRAEdb" {
   license_type   = "LicenseIncluded"
   ledger_enabled = true
 }
+
+
+resource "azurerm_app_service_plan" "mtc-app-service-plan" {
+  name                = "etrae-appserviceplan"
+  location            = azurerm_resource_group.mtc-rg.location
+  resource_group_name = azurerm_resource_group.mtc-rg.name
+
+
+  sku {
+    tier = "Basic"
+    size = "B1"
+  }
+}
+
+resource "azurerm_app_service" "mtc-app-service" {
+  name                = "etrae-app-service"
+  location            = azurerm_resource_group.mtc-rg.location
+  resource_group_name = azurerm_resource_group.mtc-rg.name
+  app_service_plan_id = azurerm_app_service_plan.mtc-app-service-plan.id
+  app_settings        = local.env_variables
+
+}
