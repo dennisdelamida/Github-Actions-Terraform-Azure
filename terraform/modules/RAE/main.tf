@@ -90,14 +90,12 @@ resource "azurerm_maps_creator" "demo" {
 
 
 resource "azurerm_storage_account" "storage_account" {
-  name                = "darylstoragedemo23"
-  resource_group_name = azurerm_resource_group.mapsAccExample.name
-  location            = azurerm_resource_group.mapsAccExample.location
-
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-  account_kind             = "StorageV2"
-
+  name                      = "darylstoragedemo23"
+  resource_group_name       = azurerm_resource_group.mapsAccExample.name
+  location                  = azurerm_resource_group.mapsAccExample.location
+  account_tier              = "Standard"
+  account_replication_type  = "LRS"
+  account_kind              = "StorageV2"
   enable_https_traffic_only = true
   # allow_blob_public_access  = true
 

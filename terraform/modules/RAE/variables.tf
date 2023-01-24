@@ -15,7 +15,7 @@ variable "zonename" {
   default = "West Europe"
 }
 variable "azZonenames" {
-  type    = list
+  type    = list(any)
   default = ["West Europe", "UK South"]
 }
 locals {
