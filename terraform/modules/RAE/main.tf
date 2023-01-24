@@ -41,8 +41,8 @@ resource "azurerm_resource_group" "rg" {
 
 resource "azurerm_app_service_plan" "mtc-app-service-plan" {
   name                = "etrae-appserviceplan"
-  location            = azurerm_resource_group.mtc-rg.location
-  resource_group_name = azurerm_resource_group.mtc-rg.name
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
 
 
   sku {
@@ -53,8 +53,8 @@ resource "azurerm_app_service_plan" "mtc-app-service-plan" {
 
 resource "azurerm_app_service" "mtc-app-service" {
   name                = "etrae-app-service"
-  location            = azurerm_resource_group.mtc-rg.location
-  resource_group_name = azurerm_resource_group.mtc-rg.name
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
   app_service_plan_id = azurerm_app_service_plan.mtc-app-service-plan.id
   app_settings        = local.env_variables
 
