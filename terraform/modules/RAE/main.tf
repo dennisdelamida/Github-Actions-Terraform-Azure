@@ -68,7 +68,7 @@ resource "azurerm_resource_group" "mapsAccExample" {
 
 resource "azurerm_maps_account" "maps-acc-example" {
   name                = "az-maps-account"
-  resource_group_name = azurerm_resource_group.mapsAccExample.name
+  resource_group_name = azurerm_resource_group.rg.name
   sku_name            = "G2"
 
   tags = {
@@ -79,7 +79,7 @@ resource "azurerm_maps_account" "maps-acc-example" {
 resource "azurerm_maps_creator" "demo" {
   name            = "maps-creator-demo"
   maps_account_id = azurerm_maps_account.maps-acc-example.id
-  location        = azurerm_resource_group.mapsAccExample.location
+  location        = azurerm_resource_group.rg.location
   storage_units   = 1
 
   tags = {
@@ -91,8 +91,8 @@ resource "azurerm_maps_creator" "demo" {
 
 resource "azurerm_storage_account" "storage_account" {
   name                      = "darylstoragedemo99"
-  resource_group_name       = azurerm_resource_group.mapsAccExample.name
-  location                  = azurerm_resource_group.mapsAccExample.location
+  resource_group_name       = azurerm_resource_group.rg.name
+  location                  = azurerm_resource_group.rg.location
   account_tier              = "Standard"
   account_replication_type  = "LRS"
   account_kind              = "StorageV2"
