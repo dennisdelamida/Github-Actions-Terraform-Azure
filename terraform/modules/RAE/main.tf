@@ -24,19 +24,19 @@ resource "azurerm_resource_group" "rg" {
 #     environment = "dev"
 #   }
 # }
-resource "azurerm_mssql_database" "RAEdb" {
-  name         = "RAEdb"
-  server_id    = azurerm_mssql_server.mtc-sqlserver.id
-  collation    = "SQL_Latin1_General_CP1_CI_AS"
-  license_type = "LicenseIncluded"
-}
-resource "azurerm_mssql_database" "ETRAEdb" {
-  name           = "ETRAEdb"
-  server_id      = azurerm_mssql_server.mtc-sqlserver.id
-  collation      = "SQL_Latin1_General_CP1_CI_AS"
-  license_type   = "LicenseIncluded"
-  ledger_enabled = true
-}
+# resource "azurerm_mssql_database" "RAEdb" {
+#   name         = "RAEdb"
+#   server_id    = azurerm_mssql_server.mtc-sqlserver.id
+#   collation    = "SQL_Latin1_General_CP1_CI_AS"
+#   license_type = "LicenseIncluded"
+# }
+# resource "azurerm_mssql_database" "ETRAEdb" {
+#   name           = "ETRAEdb"
+#   server_id      = azurerm_mssql_server.mtc-sqlserver.id
+#   collation      = "SQL_Latin1_General_CP1_CI_AS"
+#   license_type   = "LicenseIncluded"
+#   ledger_enabled = true
+# }
 
 
 resource "azurerm_app_service_plan" "mtc-app-service-plan" {
