@@ -59,3 +59,62 @@ resource "azurerm_app_service" "mtc-app-service" {
   app_settings        = local.env_variables
 
 }
+
+//-Daryl-//
+resource "azurerm_resource_group" "mapsAccExample" {
+  name     = "az-maps-acc"
+  location = var.zonename
+}
+
+resource "azurerm_maps_account" "maps-acc-example" {
+  name                = "az-maps-account"
+  resource_group_name = azurerm_resource_group.mapsAccExample.name
+  sku_name            = "G2"
+
+  tags = {
+    environment = "Test"
+  }
+}
+
+resource "azurerm_maps_creator" "demo" {
+  name            = "maps-creator-demo"
+  maps_account_id = azurerm_maps_account.maps-acc-example.id
+  location        = azurerm_resource_group.mapsAccExample.location
+  storage_units   = 1
+
+  tags = {
+    environment = "test"
+  }
+}
+
+
+
+resource "azurerm_storage_account" "storage_account" {
+  name                = "darylstoragedemo23"
+  resource_group_name = azurerm_resource_group.mapsAccExample.name
+  location            = azurerm_resource_group.mapsAccExample.location
+
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+  account_kind             = "StorageV2"
+
+  enable_https_traffic_only = true
+  # allow_blob_public_access  = true
+
+  static_website {
+    index_document = "index.html"
+  }
+}
+
+resource "azurerm_storage_blob" "example" {
+  name                   = "index.html"
+  storage_account_name   = azurerm_storage_account.storage_account.name
+  storage_container_name = "$web"
+  type                   = "Block"
+  content_type           = "text/html"
+  source_content         = "<h1> Hello World , this is Daryl Tejares website that was deployed with Terraform on Azure storage"
+}
+
+
+
+//-Daryl-//
