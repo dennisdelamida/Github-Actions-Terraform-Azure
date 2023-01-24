@@ -3,27 +3,27 @@ resource "azurerm_resource_group" "rg" {
   location = var.location
 }
 
-resource "azurerm_storage_account" "STA" {
-  name                     = var.sname
-  resource_group_name      = azurerm_resource_group.rg.name
-  location                 = var.location
-  account_tier             = "Standard"
-  account_replication_type = "GRS"
-  tags = {
-    environment = "dev"
-  }
-}
-resource "azurerm_mssql_server" "mtc-sqlserver" {
-  name                         = "mssqlsrver01202023"
-  resource_group_name          = azurerm_resource_group.rg.name
-  location                     = var.location
-  version                      = "12.0"
-  administrator_login          = "adminadmin"
-  administrator_login_password = var.password
-  tags = {
-    environment = "dev"
-  }
-}
+# resource "azurerm_storage_account" "STA" {
+#   name                     = var.sname
+#   resource_group_name      = azurerm_resource_group.rg.name
+#   location                 = var.location
+#   account_tier             = "Standard"
+#   account_replication_type = "GRS"
+#   tags = {
+#     environment = "dev"
+#   }
+# }
+# resource "azurerm_mssql_server" "mtc-sqlserver" {
+#   name                         = "mssqlsrver01202023"
+#   resource_group_name          = azurerm_resource_group.rg.name
+#   location                     = var.location
+#   version                      = "12.0"
+#   administrator_login          = "adminadmin"
+#   administrator_login_password = var.password
+#   tags = {
+#     environment = "dev"
+#   }
+# }
 resource "azurerm_mssql_database" "RAEdb" {
   name         = "RAEdb"
   server_id    = azurerm_mssql_server.mtc-sqlserver.id
