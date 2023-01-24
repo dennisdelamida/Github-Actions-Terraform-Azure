@@ -61,10 +61,10 @@ resource "azurerm_app_service" "mtc-app-service" {
 }
 
 //-Daryl-//
-resource "azurerm_resource_group" "mapsAccExample" {
-  name     = "az-maps-acc"
-  location = var.zonename
-}
+# resource "azurerm_resource_group" "mapsAccExample" {
+#   name     = "az-maps-acc"
+#   location = var.zonename
+# }
 
 resource "azurerm_maps_account" "maps-acc-example" {
   name                = "az-maps-account"
