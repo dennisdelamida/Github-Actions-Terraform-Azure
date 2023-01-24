@@ -90,7 +90,7 @@ resource "azurerm_maps_creator" "demo" {
 
 
 resource "azurerm_storage_account" "storage_account" {
-  name                      = "darylstoragedemonstrate23"
+  name                      = "darylstoragedemo99"
   resource_group_name       = azurerm_resource_group.mapsAccExample.name
   location                  = azurerm_resource_group.mapsAccExample.location
   account_tier              = "Standard"
